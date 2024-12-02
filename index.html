@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Poppins"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Managed Care Services Web Chat</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="hero">
+        <img
+          class="logo"
+          id="imgLogo"
+          src="./Cardinal image.png"
+          alt="MCS Chat"
+          title="MCS Chat"
+        />
+
+        <span class="title">Managed Care Services Live Chat</span>
+      </div>
+
+      <div class="icon-btn">
+        <button
+          type="button"
+          id="custom-launcher"
+          onclick="toggleMessenger()"
+        ></button>
+      </div>
+
+      <div>
+        <script type="text/javascript" charset="utf-8">
+          (function (g, e, n, es, ys) {
+            g["_genesysJs"] = e;
+            g[e] =
+              g[e] ||
+              function () {
+                (g[e].q = g[e].q || []).push(arguments);
+              };
+            g[e].t = 1 * new Date();
+            g[e].c = es;
+            ys = document.createElement("script");
+            ys.async = 1;
+            ys.src = n;
+            ys.charset = "utf-8";
+            document.head.appendChild(ys);
+          })(
+            window,
+            "Genesys",
+            "https://apps.usw2.pure.cloud/genesys-bootstrap/genesys.min.js",
+            {
+              environment: "prod-usw2",
+              deploymentId: "7c8b8ae3-7f6f-470b-98c4-054647dff8ec",
+            }
+          );
+
+          const customLauncher = document.getElementById("custom-launcher"); // Custom launcher button
+          let bMessengerOpened = false; // Initial status of Messenger: closed
+
+          // #1 Subscribe to the Messenger.ready event - Show custom launcher button when Messenger is ready
+          Genesys(
+            "subscribe",
+            "Messenger.ready",
+            (e) => (customLauncher.style.display = "block")
+          );
+
+          // #2 Subscribe to the Messenger.opened event - Update the status of Messenger as opened
+          Genesys("subscribe", "Messenger.opened", (e) => {
+            bMessengerOpened = true;
+            /*
+                  Update your custom launcher button here indicating a Messenger opened state i.e. show a KeyboardArrowDownIcon
+                  or hide your custom launcher button if you prefer not to indicate that Messenger is opened
+                */
+            customLauncher.style.display = "none";
+            console.log(e);
+          });
+
+          // #3 Subscribe to the Messenger.closed event - Update the status of Messenger as closed
+          Genesys("subscribe", "Messenger.closed", (e) => {
+            bMessengerOpened = false;
+            /*
+                  Update your custom launcher button here indicating a Messenger closed state i.e. show a MessageIcon
+                  or show your custom launcher button if you prefer to indicate that Messenger is closed
+                */
+            customLauncher.style.display = "block";
+            console.log(e);
+          });
+
+          const openMessenger = () => {
+            console.log("Opening messenger...");
+            Genesys("command", "Messenger.open");
+          };
+          const closeMessenger = () => {
+            console.log("Closing messenger...");
+            Genesys("command", "Messenger.close");
+          };
+
+          const toggleMessenger = () => {
+            bMessengerOpened ? closeMessenger() : openMessenger();
+          };
+        </script>
+      </div>
+
+      <table>
+        <tr>
+          <th style="font-weight: bolder">Live Help Support Team</th>
+          <th style="font-weight: bolder">
+            Hours of operations (Eastern Time)
+          </th>
+        </tr>
+
+        <tr>
+          <td>Covid Support</td>
+          <td>Mon-Fri 8:00AM-01:00PM 2:00PM-5:00PM</td>
+        </tr>
+
+        <tr>
+          <td>Flu Support</td>
+          <td>Mon-Fri 8:00AM-01:00PM 2:00PM-5:00PM</td>
+        </tr>
+
+        <tr>
+          <td>Product & Solutions Support</td>
+          <td>Mon-Fri 8:00AM-12:00PM 1:00PM-5:00PM</td>
+        </tr>
+
+        <tr>
+          <td>PSAO Support</td>
+          <td>Mon-Fri 8:00AM-12:00PM 1:00PM-5:00PM</td>
+        </tr>
+
+        <tr>
+          <td>Topco Support</td>
+          <td>Mon-Fri 8:00AM-12:00PM 1:00PM-5:00PM</td>
+        </tr>
+      </table>
+    </div>
+  </body>
+</html>
