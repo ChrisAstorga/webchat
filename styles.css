@@ -7,5 +7,9 @@
   background-repeat: no-repeat;
   background-position: center;
   align-content: center;
-  color: red;
+}
+
+img {
+  height: 50vh;
+  width: 100%;
 }
