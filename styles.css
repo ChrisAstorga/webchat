@@ -1,16 +1,11 @@
-.App {
-        font-family: sans-serif;
-        text-align: center;
-      }
-      
-      .container {
-        align-items: center;
-        text-align: center;
-        height: 100%;
-        background-image: url(/sonexus-bg.png);
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position: center;
-        align-content: center;
-        color: red;
-      }
+.container {
+  align-items: center;
+  text-align: center;
+  height: 100%;
+  background-image: url(/sonexus-bg.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  align-content: center;
+  color: red;
+}
